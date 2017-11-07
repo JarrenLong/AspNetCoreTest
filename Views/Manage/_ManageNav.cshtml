@@ -1,4 +1,5 @@
 ﻿@using MnkyTv.Views.Manage
+@using MnkyTv.Models.IdentityModels;
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();

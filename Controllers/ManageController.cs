@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using MnkyTv.Data;
+using MnkyTv.Models.IdentityModels;
+using MnkyTv.Models.ManageViewModels;
+using MnkyTv.Services;
+using System;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using MnkyTv.Models;
-using MnkyTv.Models.ManageViewModels;
-using MnkyTv.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
-using MnkyTv.Data;
 
 namespace MnkyTv.Controllers
 {
