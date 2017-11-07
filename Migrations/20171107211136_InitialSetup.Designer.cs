@@ -11,8 +11,8 @@ using System;
 namespace MnkyTv.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171107204305_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20171107211136_InitialSetup")]
+    partial class InitialSetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -105,7 +105,7 @@ namespace MnkyTv.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MnkyTv.Models.ApplicationRole", b =>
+            modelBuilder.Entity("MnkyTv.Models.IdentityModels.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -135,7 +135,7 @@ namespace MnkyTv.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("MnkyTv.Models.ApplicationUser", b =>
+            modelBuilder.Entity("MnkyTv.Models.IdentityModels.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -236,7 +236,7 @@ namespace MnkyTv.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("MnkyTv.Models.ApplicationRole")
+                    b.HasOne("MnkyTv.Models.IdentityModels.ApplicationRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -244,7 +244,7 @@ namespace MnkyTv.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MnkyTv.Models.ApplicationUser")
+                    b.HasOne("MnkyTv.Models.IdentityModels.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -252,7 +252,7 @@ namespace MnkyTv.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MnkyTv.Models.ApplicationUser")
+                    b.HasOne("MnkyTv.Models.IdentityModels.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -260,12 +260,12 @@ namespace MnkyTv.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("MnkyTv.Models.ApplicationRole")
+                    b.HasOne("MnkyTv.Models.IdentityModels.ApplicationRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MnkyTv.Models.ApplicationUser")
+                    b.HasOne("MnkyTv.Models.IdentityModels.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -273,7 +273,7 @@ namespace MnkyTv.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("MnkyTv.Models.ApplicationUser")
+                    b.HasOne("MnkyTv.Models.IdentityModels.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -281,7 +281,7 @@ namespace MnkyTv.Migrations
 
             modelBuilder.Entity("MnkyTv.Models.MediaRequest", b =>
                 {
-                    b.HasOne("MnkyTv.Models.ApplicationUser", "User")
+                    b.HasOne("MnkyTv.Models.IdentityModels.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
@@ -292,7 +292,7 @@ namespace MnkyTv.Migrations
                         .WithMany("MediaVotes")
                         .HasForeignKey("MediaRequestID");
 
-                    b.HasOne("MnkyTv.Models.ApplicationUser", "User")
+                    b.HasOne("MnkyTv.Models.IdentityModels.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });

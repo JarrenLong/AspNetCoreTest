@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace MnkyTv.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialSetup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
