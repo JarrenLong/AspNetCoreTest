@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/MnkyTv/v15/sqlite3
+/obj
+/.vs/MnkyTv/v15
+/bin
