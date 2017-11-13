@@ -65,6 +65,8 @@ namespace MnkyTv
         options.SlidingExpiration = true;
       });
 
+      services.AddAuthentication();
+
       // Require SSL
       services.Configure<MvcOptions>(options =>
       {

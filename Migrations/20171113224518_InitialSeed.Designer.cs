@@ -11,8 +11,8 @@ using System;
 namespace MnkyTv.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171107211136_InitialSetup")]
-    partial class InitialSetup
+    [Migration("20171113224518_InitialSeed")]
+    partial class InitialSeed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

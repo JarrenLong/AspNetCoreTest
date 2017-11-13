@@ -18,14 +18,14 @@ namespace MnkyTv.Controllers
       _context = context;
     }
 
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     // GET: MediaVotes
     public async Task<IActionResult> Index()
     {
       return View(await _context.MediaVotes.ToListAsync());
     }
 
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     // GET: MediaVotes/Details/5
     public async Task<IActionResult> Details(int? id)
     {
@@ -44,14 +44,14 @@ namespace MnkyTv.Controllers
       return View(mediaVote);
     }
 
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     // GET: MediaVotes/Create
     public IActionResult Create()
     {
       return View();
     }
 
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     // POST: MediaVotes/Create
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -68,7 +68,7 @@ namespace MnkyTv.Controllers
       return View(mediaVote);
     }
 
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     // GET: MediaVotes/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
@@ -85,7 +85,7 @@ namespace MnkyTv.Controllers
       return View(mediaVote);
     }
 
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     // POST: MediaVotes/Edit/5
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -121,7 +121,7 @@ namespace MnkyTv.Controllers
       return View(mediaVote);
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     // GET: MediaVotes/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
@@ -140,7 +140,7 @@ namespace MnkyTv.Controllers
       return View(mediaVote);
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     // POST: MediaVotes/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]

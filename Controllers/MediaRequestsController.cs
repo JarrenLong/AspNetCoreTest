@@ -18,14 +18,14 @@ namespace MnkyTv.Controllers
       _context = context;
     }
 
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     // GET: MediaRequests
     public async Task<IActionResult> Index()
     {
       return View(await _context.MediaRequests.ToListAsync());
     }
 
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     // GET: MediaRequests/Details/5
     public async Task<IActionResult> Details(int? id)
     {
@@ -44,14 +44,14 @@ namespace MnkyTv.Controllers
       return View(mediaRequest);
     }
 
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     // GET: MediaRequests/Create
     public IActionResult Create()
     {
       return View();
     }
 
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     // POST: MediaRequests/Create
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -68,7 +68,7 @@ namespace MnkyTv.Controllers
       return View(mediaRequest);
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     // GET: MediaRequests/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
@@ -85,7 +85,7 @@ namespace MnkyTv.Controllers
       return View(mediaRequest);
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     // POST: MediaRequests/Edit/5
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -115,7 +115,7 @@ namespace MnkyTv.Controllers
       return View(mediaRequest);
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     // GET: MediaRequests/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
@@ -134,7 +134,7 @@ namespace MnkyTv.Controllers
       return View(mediaRequest);
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     // POST: MediaRequests/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
