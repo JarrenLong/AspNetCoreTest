@@ -3,7 +3,7 @@ using System;
 
 namespace MnkyTv.Models.IdentityModels
 {
-  public class ApplicationRole : IdentityRole<string>
+  public class ApplicationRole : IdentityRole
   {
     public string Description { get; set; }
     public DateTime CreatedDate { get; set; }
