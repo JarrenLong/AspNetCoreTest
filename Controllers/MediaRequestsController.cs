@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MnkyTv.Controllers
 {
-  [Authorize]
+  //[Authorize]
   public class MediaRequestsController : Controller
   {
     private readonly ApplicationDbContext _context;
@@ -22,7 +22,11 @@ namespace MnkyTv.Controllers
     // GET: MediaRequests
     public async Task<IActionResult> Index()
     {
-      return View(await _context.MediaRequests.ToListAsync());
+      return View(await _context.MediaRequests
+        .Include(i => i.MediaVotes)
+        .AsNoTracking()
+        .OrderByDescending(i => i.MediaVotes.Count())
+        .ToListAsync());
     }
 
     //[Authorize(Roles = "User")]
@@ -113,6 +117,30 @@ namespace MnkyTv.Controllers
         return RedirectToAction(nameof(Index));
       }
       return View(mediaRequest);
+    }
+
+    //[Authorize(Roles = "Admin")]
+    // GET: MediaRequests/Edit/5
+    public async Task<IActionResult> Upvote(int? id)
+    {
+      if (id == null)
+      {
+        return NotFound();
+      }
+
+      var mediaRequest = await _context.MediaRequests.SingleOrDefaultAsync(m => m.ID == id);
+      if (mediaRequest == null)
+      {
+        return NotFound();
+      }
+      var vote = new MediaVote()
+      {
+        MediaRequestID = id,
+        MediaRequest = mediaRequest
+      };
+      _context.Add(vote);
+      await _context.SaveChangesAsync();
+      return RedirectToAction(nameof(Index));
     }
 
     //[Authorize(Roles = "Admin")]

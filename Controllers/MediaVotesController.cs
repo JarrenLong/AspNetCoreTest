@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MnkyTv.Controllers
 {
-  [Authorize]
+  //[Authorize]
   public class MediaVotesController : Controller
   {
     private readonly ApplicationDbContext _context;
