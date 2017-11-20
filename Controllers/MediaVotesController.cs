@@ -22,7 +22,7 @@ namespace MnkyTv.Controllers
     // GET: MediaVotes
     public async Task<IActionResult> Index()
     {
-      return View(await _context.MediaVotes.ToListAsync());
+      return View(await _context.MediaVotes.Where(w => !w.IsDeleted).ToListAsync());
     }
 
     //[Authorize(Roles = "User")]
@@ -34,8 +34,7 @@ namespace MnkyTv.Controllers
         return NotFound();
       }
 
-      var mediaVote = await _context.MediaVotes
-          .SingleOrDefaultAsync(m => m.ID == id);
+      var mediaVote = await _context.MediaVotes.SingleOrDefaultAsync(m => m.ID == id && !m.IsDeleted);
       if (mediaVote == null)
       {
         return NotFound();
@@ -77,7 +76,7 @@ namespace MnkyTv.Controllers
         return NotFound();
       }
 
-      var mediaVote = await _context.MediaVotes.SingleOrDefaultAsync(m => m.ID == id);
+      var mediaVote = await _context.MediaVotes.SingleOrDefaultAsync(m => m.ID == id && !m.IsDeleted);
       if (mediaVote == null)
       {
         return NotFound();
@@ -130,8 +129,7 @@ namespace MnkyTv.Controllers
         return NotFound();
       }
 
-      var mediaVote = await _context.MediaVotes
-          .SingleOrDefaultAsync(m => m.ID == id);
+      var mediaVote = await _context.MediaVotes.SingleOrDefaultAsync(m => m.ID == id && !m.IsDeleted);
       if (mediaVote == null)
       {
         return NotFound();
@@ -147,7 +145,8 @@ namespace MnkyTv.Controllers
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
       var mediaVote = await _context.MediaVotes.SingleOrDefaultAsync(m => m.ID == id);
-      _context.MediaVotes.Remove(mediaVote);
+      mediaVote.Delete();
+      //_context.MediaVotes.Remove(mediaVote);
       await _context.SaveChangesAsync();
       return RedirectToAction(nameof(Index));
     }

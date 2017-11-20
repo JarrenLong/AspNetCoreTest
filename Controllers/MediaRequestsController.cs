@@ -23,6 +23,7 @@ namespace MnkyTv.Controllers
     public async Task<IActionResult> Index()
     {
       return View(await _context.MediaRequests
+        .Where(w => !w.IsDeleted)
         .Include(i => i.MediaVotes)
         .AsNoTracking()
         .OrderByDescending(i => i.MediaVotes.Count())
@@ -39,7 +40,7 @@ namespace MnkyTv.Controllers
       }
 
       var mediaRequest = await _context.MediaRequests
-          .SingleOrDefaultAsync(m => m.ID == id);
+          .SingleOrDefaultAsync(m => m.ID == id && !m.IsDeleted);
       if (mediaRequest == null)
       {
         return NotFound();
@@ -81,7 +82,7 @@ namespace MnkyTv.Controllers
         return NotFound();
       }
 
-      var mediaRequest = await _context.MediaRequests.SingleOrDefaultAsync(m => m.ID == id);
+      var mediaRequest = await _context.MediaRequests.SingleOrDefaultAsync(m => m.ID == id && !m.IsDeleted);
       if (mediaRequest == null)
       {
         return NotFound();
@@ -128,14 +129,13 @@ namespace MnkyTv.Controllers
         return NotFound();
       }
 
-      var mediaRequest = await _context.MediaRequests.SingleOrDefaultAsync(m => m.ID == id);
+      var mediaRequest = await _context.MediaRequests.SingleOrDefaultAsync(m => m.ID == id && !m.IsDeleted);
       if (mediaRequest == null)
       {
         return NotFound();
       }
       var vote = new MediaVote()
       {
-        MediaRequestID = id,
         MediaRequest = mediaRequest
       };
       _context.Add(vote);
@@ -152,8 +152,7 @@ namespace MnkyTv.Controllers
         return NotFound();
       }
 
-      var mediaRequest = await _context.MediaRequests
-          .SingleOrDefaultAsync(m => m.ID == id);
+      var mediaRequest = await _context.MediaRequests.SingleOrDefaultAsync(m => m.ID == id && !m.IsDeleted);
       if (mediaRequest == null)
       {
         return NotFound();
@@ -169,7 +168,8 @@ namespace MnkyTv.Controllers
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
       var mediaRequest = await _context.MediaRequests.SingleOrDefaultAsync(m => m.ID == id);
-      _context.MediaRequests.Remove(mediaRequest);
+      mediaRequest.Delete();
+      //_context.MediaRequests.Remove(mediaRequest);
       await _context.SaveChangesAsync();
       return RedirectToAction(nameof(Index));
     }
